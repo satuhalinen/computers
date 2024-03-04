@@ -16,28 +16,23 @@ const dataStoragePath = path.join(
 );
 
 const storagePath = path.join(__dirname, storage.folder);
-const { DataStorageLayer } = require(dataStoragePath);
-const dataStorageLayer = new DataStorageLayer();
+const { createDataStorage } = require(dataStoragePath);
+const dataStorage = createDataStorage(storagePath, storage.storageConfigFile);
+
+const RESOURCE = dataStorage.RESOURCE;
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/computers", (req, res) => {
-  const result = dataStorageLayer.getAll();
-  res.json(result);
-});
+app.get("/rest", (req, res) => res.json(RESOURCE));
 
-app.get(`/api/computers/:id`, (req, res) => {
-  const id = +req.params.id;
-  const result = dataStorageLayer.get(id);
-  res.json(result);
-});
-
-app.post("/api/computers", (req, res) => {
-  const result = dataStorageLayer.insert(req.body);
-  res.json(result);
-});
+app.get(`/rest/${RESOURCE}`, (req, res) =>
+  dataStorage.getAll().then((result) => res.json(result))
+);
 
 app.all("*", (req, res) => res.json("not supported"));
+const menuPath = path.join(__dirname, "menu.html");
+
+app.get("/", (req, res) => res.sendFile(menuPath));
 
 app.listen(port, host, () => console.log(`${host}:${port} serving...`));

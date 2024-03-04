@@ -6,6 +6,7 @@
         "dataStorageFile":"dataStorageLayer.js"
     },
     "storage":{
-        "folder":"computerRegister"
+        "folder":"computerRegister",
+        "storageConfigFile": "storageConfig.json"
     }
 }

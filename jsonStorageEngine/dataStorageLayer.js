@@ -1,20 +1,23 @@
-const fs = require("fs");
+"use strict";
 
-class DataStorageLayer {
-  constructor() {
-    this.data = JSON.parse(
-      fs.readFileSync("./computerRegister/Halinen_Satu_computers.json", "utf8")
-    );
-  }
-  getAll() {
-    return this.data;
-  }
-  get(id) {
-    return this.data.find((item) => item.id === id);
-  }
-  insert(item) {
-    this.data.push(item);
-  }
+const { createStorageLayer } = require("./storageLayer");
+
+function createDataStorage(storagePath, storageConfig) {
+  const { getAllFromStorage, resource } = createStorageLayer(
+    storagePath,
+    storageConfig
+  );
+
+  class Datastorage {
+    get RESOURCE() {
+      return resource;
+    }
+    getAll() {
+      return getAllFromStorage();
+    }
+  } //end of class
+
+  return new Datastorage();
 }
 
-module.exports = { DataStorageLayer };
+module.exports = { createDataStorage };
