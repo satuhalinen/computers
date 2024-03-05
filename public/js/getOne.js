@@ -85,6 +85,7 @@
   }
 
   function showErrorMessage(message) {
-    resultarea.innerHTML = `<p>${message}</p>`;
+    resultarea.innerHTML = `<h1>Error</h1><p>${message}</p>`;
+    resultarea.setAttribute("class", "error");
   }
 })();

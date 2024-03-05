@@ -22,12 +22,16 @@
         resultset.appendChild(tr);
       }
     } catch (err) {
-      console.log(err);
+      showErrorMessage(err.message);
     }
   }
   function createCell(data) {
     const td = document.createElement("td");
     td.textContent = data;
     return td;
+  }
+  function showErrorMessage(message) {
+    resultarea.innerHTML = `<h1>Error</h1><p>${message}</p>`;
+    resultarea.setAttribute("class", "error");
   }
 })();
