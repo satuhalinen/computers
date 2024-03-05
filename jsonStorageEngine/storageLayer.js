@@ -22,8 +22,21 @@ function createStorageLayer(storageFolder, storageConfigFile) {
     return await readStorage(storageFilePath);
   }
 
+  async function getFromStorage(value, key = primary_key) {
+    return (await readStorage(storageFilePath)).filter(
+      (item) => item[key] == value
+    );
+  }
+  async function getKeys() {
+    const storage = await readStorage(storageFilePath);
+    const keys = new Set(storage.flatMap((item) => Object.keys(item)));
+    return [...keys];
+  }
+
   return {
     getAllFromStorage,
+    getFromStorage,
+    getKeys,
     primary_key,
     resource,
   };
