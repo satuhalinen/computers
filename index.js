@@ -82,9 +82,9 @@ app.put(`/api/${RESOURCE}/:value`, async (req, res) => {
   }
 });
 
-app.all("*", (req, res) => res.json("not supported"));
 const menuPath = path.join(__dirname, "menu.html");
 
+app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => res.sendFile(menuPath));
-
+app.all("*", (req, res) => res.json("not supported"));
 app.listen(port, host, () => console.log(`${host}:${port} serving...`));
