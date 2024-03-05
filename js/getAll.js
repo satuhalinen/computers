@@ -5,7 +5,7 @@
 
   async function init() {
     try {
-      const data = await fetch("http://localhost:4000/rest/computers", {
+      const data = await fetch("http://localhost:4000/api/computers", {
         mode: "cors",
       });
       const result = await data.json();

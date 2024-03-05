@@ -65,7 +65,7 @@
   }
 
   async function send() {
-    const baseUri = "http://localhost:4000/rest/computers";
+    const baseUri = "http://localhost:4000/api/computers";
     try {
       if (searchState) {
         const data = await fetch(`${baseUri}/id/${idField.value}`, {

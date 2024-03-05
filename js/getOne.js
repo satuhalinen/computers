@@ -13,7 +13,7 @@
     searchvalue = document.getElementById("searchvalue");
 
     try {
-      const data = await fetch("http://localhost:4000/rest/computers/keys", {
+      const data = await fetch("http://localhost:4000/api/computers/keys", {
         mode: "cors",
       });
       if (data.ok) {
@@ -51,7 +51,7 @@
 
     try {
       const data = await fetch(
-        `http://localhost:4000/rest/computers/${keyName}/${value}`,
+        `http://localhost:4000/api/computers/${keyName}/${value}`,
         { mode: "cors" }
       );
 

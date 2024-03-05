@@ -49,7 +49,7 @@
         headers: { "Content-Type": "application/json" },
         mode: "cors",
       };
-      const data = await fetch("http://localhost:4000/rest/computers", options);
+      const data = await fetch("http://localhost:4000/api/computers", options);
       const result = await data.json();
 
       updateStatus(result);
