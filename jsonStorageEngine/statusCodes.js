@@ -1,12 +1,15 @@
 "use strict";
 
 const CODES = {
+  NOT_FOUND: 0,
   INSERT_OK: 1,
   NOT_INSERTED: 2,
   ALREADY_IN_USE: 3,
-  UPDATE_OK: 4,
-  NOT_UPDATED: 5,
-  KEY_DO_NOT_MATCH: 6,
+  REMOVE_OK: 4,
+  NOT_REMOVED: 5,
+  UPDATE_OK: 6,
+  NOT_UPDATED: 7,
+  KEY_DO_NOT_MATCH: 8,
 };
 
 const TYPES = {
@@ -15,6 +18,11 @@ const TYPES = {
 };
 
 const MESSAGES = {
+  NOT_FOUND: (key, value) => ({
+    message: `No resource found with ${key} ${value}`,
+    code: CODES.NOT_FOUND,
+    type: TYPES.INFO,
+  }),
   INSERT_OK: (key, value) => ({
     message: `Resource with ${key} ${value} was inserted`,
     code: CODES.INSERT_OK,
@@ -28,6 +36,16 @@ const MESSAGES = {
   ALREADY_IN_USE: (value) => ({
     message: `Key ${value} was already in use`,
     code: CODES.ALREADY_IN_USE,
+    type: TYPES.ERROR,
+  }),
+  REMOVE_OK: (key, value) => ({
+    message: `Resource with ${key} ${value} was removed`,
+    code: CODES.REMOVE_OK,
+    type: TYPES.INFO,
+  }),
+  NOT_REMOVED: (key, value) => ({
+    message: `No resource removed with ${key} ${value}`,
+    code: CODES.NOT_REMOVED,
     type: TYPES.ERROR,
   }),
   UPDATE_OK: (key, value) => ({

@@ -33,7 +33,9 @@ app.get(`/rest/${RESOURCE}/keys`, (req, res) =>
 app.get(`/rest/${RESOURCE}`, (req, res) =>
   dataStorage.getAll().then((result) => res.json(result))
 );
-
+app.get(`/rest/${RESOURCE}/:value`, (req, res) =>
+  dataStorage.get(req.params.value).then((result) => res.json(result))
+);
 app.get(`/rest/${RESOURCE}/:key/:value`, (req, res) =>
   dataStorage
     .get(req.params.value, req.params.key)
@@ -43,6 +45,13 @@ app.get(`/rest/${RESOURCE}/:key/:value`, (req, res) =>
 app.post(`/rest/${RESOURCE}`, (req, res) =>
   dataStorage
     .insert(req.body)
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err))
+);
+
+app.delete(`/rest/${RESOURCE}/:value`, (req, res) =>
+  dataStorage
+    .remove(req.params.value)
     .then((result) => res.json(result))
     .catch((err) => res.json(err))
 );

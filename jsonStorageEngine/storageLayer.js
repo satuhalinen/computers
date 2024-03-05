@@ -43,17 +43,24 @@ function createStorageLayer(storageFolder, storageConfigFile) {
     }
     return false;
   }
+  async function removeFromStorage(value) {
+    const storage = await readStorage(storageFilePath);
+    const i = storage.findIndex((item) => item[primary_key] == value);
+    if (i < 0) return false;
+    storage.splice(i, 1);
+    return await writeStorage(storageFilePath, storage);
+  }
   async function getKeys() {
     const storage = await readStorage(storageFilePath);
     const keys = new Set(storage.flatMap((item) => Object.keys(item)));
     return [...keys];
   }
-
   return {
     getAllFromStorage,
     getFromStorage,
     addToStorage,
     updateStorage,
+    removeFromStorage,
     getKeys,
     primary_key,
     resource,
