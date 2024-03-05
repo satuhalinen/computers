@@ -46,6 +46,33 @@ app.post(`/rest/${RESOURCE}`, (req, res) =>
     .then((result) => res.json(result))
     .catch((err) => res.json(err))
 );
+
+app.put(`/rest/${RESOURCE}/:value`, async (req, res) => {
+  const resObj = req.body;
+  const keyValue = req.params.value;
+  if (keyValue != resObj[dataStorage.PRIMARY_KEY]) {
+    res.json(
+      dataStorage.MESSAGES.KEY_DO_NOT_MATCH(
+        keyValue,
+        resObj[dataStorage.PRIMARY_KEY]
+      )
+    );
+  } else {
+    const result = await dataStorage.get(keyValue);
+    if (result.length > 0) {
+      dataStorage
+        .update(resObj)
+        .then((result) => res.json(result))
+        .catch((err) => res.json(err));
+    } else {
+      dataStorage
+        .insert(resObj)
+        .then((result) => res.json(result))
+        .catch((err) => res.json(err));
+    }
+  }
+});
+
 app.all("*", (req, res) => res.json("not supported"));
 const menuPath = path.join(__dirname, "menu.html");
 

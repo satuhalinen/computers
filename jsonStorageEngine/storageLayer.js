@@ -32,6 +32,17 @@ function createStorageLayer(storageFolder, storageConfigFile) {
     storage.push(adapt(newObject));
     return await writeStorage(storageFilePath, storage);
   }
+  async function updateStorage(modifiedObject) {
+    const storage = await readStorage(storageFilePath);
+    const oldObject = storage.find(
+      (item) => item[primary_key] == modifiedObject[primary_key]
+    );
+    if (oldObject) {
+      Object.assign(oldObject, adapt(modifiedObject));
+      return await writeStorage(storageFilePath, storage);
+    }
+    return false;
+  }
   async function getKeys() {
     const storage = await readStorage(storageFilePath);
     const keys = new Set(storage.flatMap((item) => Object.keys(item)));
@@ -42,6 +53,7 @@ function createStorageLayer(storageFolder, storageConfigFile) {
     getAllFromStorage,
     getFromStorage,
     addToStorage,
+    updateStorage,
     getKeys,
     primary_key,
     resource,

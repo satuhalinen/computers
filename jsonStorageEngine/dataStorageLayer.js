@@ -7,6 +7,7 @@ function createDataStorage(storagePath, storageConfig) {
     getAllFromStorage,
     getFromStorage,
     addToStorage,
+    updateStorage,
     getKeys,
     primary_key,
     resource,
@@ -56,6 +57,19 @@ function createDataStorage(storagePath, storageConfig) {
           }
         } else {
           reject(MESSAGES.NOT_INSERTED());
+        }
+      });
+    }
+    update(item) {
+      return new Promise(async (resolve, reject) => {
+        if (item) {
+          if (await updateStorage(item)) {
+            resolve(MESSAGES.UPDATE_OK(primary_key, item[primary_key]));
+          } else {
+            reject(MESSAGES.NOT_UPDATED());
+          }
+        } else {
+          reject(MESSAGES.NOT_UPDATED());
         }
       });
     }
