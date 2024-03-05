@@ -2,7 +2,7 @@
 
 const path = require("path");
 
-const { readStorage } = require("./reader");
+const { readStorage, writeStorage } = require("./readerWriter");
 
 function createStorageLayer(storageFolder, storageConfigFile) {
   const storageConfig = path.join(storageFolder, storageConfigFile);
@@ -27,6 +27,11 @@ function createStorageLayer(storageFolder, storageConfigFile) {
       (item) => item[key] == value
     );
   }
+  async function addToStorage(newObject) {
+    const storage = await readStorage(storageFilePath);
+    storage.push(adapt(newObject));
+    return await writeStorage(storageFilePath, storage);
+  }
   async function getKeys() {
     const storage = await readStorage(storageFilePath);
     const keys = new Set(storage.flatMap((item) => Object.keys(item)));
@@ -36,6 +41,7 @@ function createStorageLayer(storageFolder, storageConfigFile) {
   return {
     getAllFromStorage,
     getFromStorage,
+    addToStorage,
     getKeys,
     primary_key,
     resource,

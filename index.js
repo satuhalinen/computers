@@ -40,6 +40,12 @@ app.get(`/rest/${RESOURCE}/:key/:value`, (req, res) =>
     .then((result) => res.json(result))
 );
 
+app.post(`/rest/${RESOURCE}`, (req, res) =>
+  dataStorage
+    .insert(req.body)
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err))
+);
 app.all("*", (req, res) => res.json("not supported"));
 const menuPath = path.join(__dirname, "menu.html");
 

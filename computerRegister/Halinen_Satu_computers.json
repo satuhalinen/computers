@@ -1,51 +1,51 @@
 [
     {
-    "id":7,
-    "name": "GameDelux",
-    "type": "tabletop",
-    "processor": "MotorOlè",
-    "amount": 25
+        "id": 7,
+        "name": "GameDelux",
+        "type": "tabletop",
+        "processor": "MotorOlè",
+        "amount": 25
     },
     {
-    "id":1,
-    "name": "Cera 2400",
-    "type": "laptop",
-    "processor": "Brain 456",
-    "amount": 7
+        "id": 1,
+        "name": "Cera 2400",
+        "type": "laptop",
+        "processor": "Brain 456",
+        "amount": 7
     },
     {
-    "id":2,
-    "name": "Beast II",
-    "type": "embedded",
-    "processor": "X-Force",
-    "amount": 30
+        "id": 2,
+        "name": "Beast II",
+        "type": "embedded",
+        "processor": "X-Force",
+        "amount": 30
     },
     {
-    "id":6,
-    "name": "King 3000",
-    "type": "gameover",
-    "processor": "PiTron 3",
-    "amount": 100
+        "id": 6,
+        "name": "King 3000",
+        "type": "gameover",
+        "processor": "PiTron 3",
+        "amount": 100
     },
     {
-    "id":3,
-    "name": "BigFlop Mark II",
-    "type": "supercomputer",
-    "processor": "MinPower",
-    "amount": 13
+        "id": 3,
+        "name": "BigFlop Mark II",
+        "type": "supercomputer",
+        "processor": "MinPower",
+        "amount": 13
     },
     {
-    "id":4,
-    "name": "Xunil 4.7",
-    "type": "pocket computer",
-    "processor": "BNE",
-    "amount": 15
+        "id": 4,
+        "name": "Xunil 4.7",
+        "type": "pocket computer",
+        "processor": "BNE",
+        "amount": 15
     },
     {
-    "id":5,
-    "name": "MaxEffect 2000",
-    "type": "server",
-    "processor": "Selenium II",
-    "amount": 1
+        "id": 5,
+        "name": "MaxEffect 2000",
+        "type": "server",
+        "processor": "Selenium II",
+        "amount": 1
     }
-    ]
+]
